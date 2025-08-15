@@ -5,6 +5,7 @@
 // @description  屏蔽最新微博分组页面的荐读推广
 // @author       catscarlet
 // @match        https://weibo.com/*
+// @run-at       document-end
 // @grant        none
 // ==/UserScript==
 
@@ -41,9 +42,13 @@
     function createOverlay(articleElement) {
         // 检查是否已添加过覆盖层，避免重复执行
         if (articleElement.classList.contains('has-custom-overlay')) {
+            //console.log(articleElement);
+            //console.log('覆盖层已添加，跳过。');
             return;
         }
 
+        console.log(articleElement);
+        console.log('添加覆盖层');
         // 标记元素已添加覆盖层
         articleElement.classList.add('has-custom-overlay');
 
@@ -103,7 +108,11 @@
         targetIcons.forEach(icon => {
             const article = icon.closest('article');
             if (article) {
+                //console.log('发现 article');
+                //console.log(article);
                 createOverlay(article);
+            } else {
+                //console.log('未检测到 article');
             }
         });
     }, 300); // 300ms内最多执行一次
@@ -118,6 +127,7 @@
 
         const container = document.querySelector('.vue-recycle-scroller__item-wrapper');
         if (container) {
+            console.log('检测到 .vue-recycle-scroller__item-wrapper，开始监视');
             domObserver = new MutationObserver(handleElementChanges);
 
             const config = {
@@ -131,7 +141,8 @@
             handleElementChanges(); // 初始检查
         } else {
             // 容器不存在时重试
-            setTimeout(startDomObserver, 500);
+            console.log('未检测到 .vue-recycle-scroller__item-wrapper');
+            setTimeout(startDomObserver, 1000);
         }
     }
 
@@ -151,7 +162,7 @@
         } else {
             stopDomObserver();
         }
-    }, 300); // 300ms防抖
+    }, 400); // 400ms防抖
 
     // 初始化URL变化监控
     function initUrlMonitor() {
