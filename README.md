@@ -24,8 +24,8 @@
 
 在完成安装用户脚本管理器后，安装本用户脚本。以下提供两种安装渠道：
 
-- Greasyfork脚本安装地址：<https://greasyfork.org/scripts/541644>，点击页面上的 _安装此脚本_ 即可。
-- 如果您访问 greasyfork.org 有困难，可以尝试这个 [GitHub链接](https://github.com/catscarlet/Download-from-JiMeng-without-Watermark/raw/refs/heads/main/Download-from-JiMeng-without-Watermark.user.js) 进行安装
+- Greasyfork脚本安装地址：<https://greasyfork.org/scripts/546066>，点击页面上的 _安装此脚本_ 即可。
+- 如果您访问 greasyfork.org 有困难，可以尝试这个 [GitHub链接](https://github.com/catscarlet/weibo-selection-killer/raw/refs/heads/main/weibo-selection-killer.user.js) 进行安装
 
 ### 使用
 
@@ -44,7 +44,6 @@
 - Firefox: 141.0.3
 
 ------
-
 
 ## 源码
 
