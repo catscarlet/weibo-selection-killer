@@ -1,9 +1,10 @@
 // ==UserScript==
 // @name         微博荐读屏蔽脚本
 // @namespace    https://github.com/catscarlet/weibo-selection-killer
-// @version      0.0.1
 // @description  屏蔽最新微博分组页面的荐读推广
+// @version      0.0.1
 // @author       catscarlet
+// @license      GNU Affero General Public License v3.0
 // @match        https://weibo.com/*
 // @run-at       document-end
 // @grant        none
