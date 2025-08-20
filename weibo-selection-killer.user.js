@@ -2,7 +2,7 @@
 // @name         微博荐读屏蔽脚本
 // @namespace    https://github.com/catscarlet/weibo-selection-killer
 // @description  屏蔽最新微博分组页面的荐读推广
-// @version      0.0.1
+// @version      0.0.2
 // @author       catscarlet
 // @license      GNU Affero General Public License v3.0
 // @match        https://weibo.com/*
@@ -98,7 +98,7 @@
 
     // 处理元素变化的节流版本
     const handleElementChanges = throttle(function() {
-        const container = document.querySelector('.vue-recycle-scroller__item-wrapper');
+        const container = document.querySelector('.Scroll_wrap_ObsGW');
         if (!container) {
             return;
         }
@@ -123,12 +123,13 @@
     // 启动DOM变化监控
     function startDomObserver() {
         if (domObserver) {
+            console.log('停止已有的 .Scroll_wrap_ObsGW 监视');
             domObserver.disconnect();
         }
 
-        const container = document.querySelector('.vue-recycle-scroller__item-wrapper');
+        const container = document.querySelector('.Scroll_wrap_ObsGW');
         if (container) {
-            console.log('检测到 .vue-recycle-scroller__item-wrapper，开始监视');
+            console.log('检测到 .Scroll_wrap_ObsGW，开始监视');
             domObserver = new MutationObserver(handleElementChanges);
 
             const config = {
@@ -142,7 +143,7 @@
             handleElementChanges(); // 初始检查
         } else {
             // 容器不存在时重试
-            console.log('未检测到 .vue-recycle-scroller__item-wrapper');
+            console.log('未检测到 .Scroll_wrap_ObsGW');
             setTimeout(startDomObserver, 1000);
         }
     }
@@ -152,7 +153,7 @@
         if (domObserver) {
             domObserver.disconnect();
             domObserver = null;
-            removeAllOverlays();
+            //removeAllOverlays();
         }
     }
 
@@ -161,12 +162,14 @@
         if (isTargetUrl()) {
             startDomObserver();
         } else {
+            console.log('分组不匹配，startsWith(https://weibo.com/mygroups) false');
             stopDomObserver();
         }
     }, 400); // 400ms防抖
 
     // 初始化URL变化监控
     function initUrlMonitor() {
+        console.log('加载 weibo-selection-killer');
         handleUrlChange(); // 初始检查
 
         // 监听浏览器历史变化
